@@ -12,7 +12,7 @@ const Chatlist = () => {
 
   
   return (
-    <div className="chatlist">
+    <div className="chatlist custom-scrollbar">
       <div className='search'>
         <div className='searchbar'>
           <img src={search} alt="" />
