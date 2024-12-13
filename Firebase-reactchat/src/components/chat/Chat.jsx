@@ -44,6 +44,7 @@ const Chat = () => {
         </div>
         <div className="message own ">
           <div className="text">
+          <img src="https://th.bing.com/th/id/R.8ad8553e1d7fc5a8d39611f2a199873a?rik=pM7TYAb6IDoQew&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f08%2fHD-Best-Nature-Wallpapers-For-Desktop.jpg&ehk=YqvOwOnHgHnt5VEnUodfYzGSZwTGaGOt03tKjkEogDM%3d&risl=&pid=ImgRaw&r=0" alt="" />
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro sunt dolorem totam dolores beatae saepe modi sint iste exercitationem et.</p>
             <span>1 min ago </span>
           </div>
