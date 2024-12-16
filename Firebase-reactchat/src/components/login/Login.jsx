@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import avatar_png from "../../../public/avatar.png"
+import "../login/login.css"
 const Login = () => {
     const[avtar,setAvtar]=useState({
         file:null,
