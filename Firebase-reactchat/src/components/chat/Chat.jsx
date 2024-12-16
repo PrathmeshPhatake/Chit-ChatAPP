@@ -8,11 +8,20 @@ import img from "../../../public/img.png";
 import camera from "../../../public/camera.png";
 import mic from "../../../public/mic.png";
 import Emojipicker from "emoji-picker-react";
-import { useState } from "react";
+import { useEffect, useState,useRef } from "react";
 
 const Chat = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+
+
+  // this hook for when we opned it comes to that div automatic 
+  const endRef=useRef(null)
+   
+  useEffect(()=>{
+    endRef.current?.scrollIntoView({behaviour:"smooth"});
+  },[]);
+
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
     setOpen(false);
@@ -62,6 +71,25 @@ const Chat = () => {
             <span>1 min ago </span>
           </div>
         </div>
+        <div className="message own">
+          <div className="text">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro sunt dolorem totam dolores beatae saepe modi sint iste exercitationem et.</p>
+            <span>1 min ago </span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="text">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro sunt dolorem totam dolores beatae saepe modi sint iste exercitationem et.</p>
+            <span>1 min ago </span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="text">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro sunt dolorem totam dolores beatae saepe modi sint iste exercitationem et.</p>
+            <span>1 min ago </span>
+          </div>
+        </div>
+        <div ref={endRef}></div>
       </div>
       <div className="bottom">
         <div className="icons">
