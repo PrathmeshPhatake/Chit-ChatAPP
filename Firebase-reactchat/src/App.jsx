@@ -11,7 +11,6 @@ const App = () => {
   const user=false;
 
   return (
-
     <div className="container">
       {
       user?(

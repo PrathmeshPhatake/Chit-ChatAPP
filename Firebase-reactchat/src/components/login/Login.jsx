@@ -8,6 +8,7 @@ const Login = () => {
     url: "",
   });
 
+
   // add avtar their
   const handleAvtar = (e) => {
     if (e.target.files[0]) {

@@ -6,6 +6,7 @@ import minus from "../../../../public/minus.png"
 import avatar from "../../../../public/avatar.png"
 
 import { useState } from 'react'
+import Adduser from '../../adduser/adduser'
 const Chatlist = () => {
   const[addMode,setAddmode]=useState(false);
 
@@ -88,6 +89,7 @@ const Chatlist = () => {
           <p>Hello</p>
         </div>
       </div>
+     {addMode&& <Adduser/>}
     </div>
   )
 }
