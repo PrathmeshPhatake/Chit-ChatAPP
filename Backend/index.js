@@ -1,30 +1,35 @@
-import express from "express";
+import express, { json } from "express";
 import dotenv from  "dotenv";
-import mongoose from "mongoose";
 dotenv.config();
+import mongoose from "mongoose";
 import cors from "cors"; 
-import signupRoute from "./route/auth.route.js";
 
+import registerRoute from "./route/user.route.js"
+const Frontend_URL=process.env.FrontendURI;
 
 
 const app=express();
-app.use(cors());
-
+app.use(cors({
+    origin:Frontend_URL,
+    credential:true
+}));
+app.use(express.json());
 
 
 const PORT=process.env.PORT ||4000;
 const URI=process.env.URI;
 
 
+// connect to database 
 try {
     mongoose.connect(URI);
     console.log("connect to mongodb database")
 } catch (error) {
-    console.log("Eroor:",error);
+    console.log("Error:",error);
 }
 
-// define route 
-app.use('/user',signupRoute); 
+app.use("/user",registerRoute);
+
 
 app.get("/",(req,res)=>{
     res.send("hello world");
