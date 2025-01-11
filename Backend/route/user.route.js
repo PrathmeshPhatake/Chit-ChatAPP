@@ -2,7 +2,7 @@ import express from "express";
 const router=express.Router();
 import { register } from "../controler/user.controler.js";
 import { checkEmail } from "../controler/checkEmail.controler.js";
-import {checkPassword} from "../controler/CheckPassword.controler.js"
+import {checkPassword} from "../controler/checkPassword.controler.js";
 // for registration 
 router.post("/register", register);
 

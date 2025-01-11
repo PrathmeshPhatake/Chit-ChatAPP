@@ -20,14 +20,12 @@ export const register=async(req,res)=>{
             profile_pic
         });
         await newUser.save();
-        res.status(201).json({message:"user created succesfuly",
+        return res.status(201).json({message:"user created succesfuly",
             data: newUser,
             succes:true
         });
     } catch (error) {
         console.log("Error:",error);
-        res.status(500).josn({message:error.message|| error,
-            error:true
-        });
+        return res.status(500).json({ message: error.message || error });
     }
 }

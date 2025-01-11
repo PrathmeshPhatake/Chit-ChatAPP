@@ -1,5 +1,5 @@
 import mongoose  from "mongoose";
-const userscheam=mongoose.Schema({
+const userScheam=mongoose.Schema({
     name:{
         type:String,
         required:[true,"provde name"]
@@ -18,8 +18,8 @@ const userscheam=mongoose.Schema({
         default:""
     }
 },{
-    Timestamp:true,
+    timestamp:true,
 });
 //  modexl wiith User-->table name of it 
-const User=mongoose.model("User",userscheam);
+const User=mongoose.model("User",userScheam);
 export default User;
