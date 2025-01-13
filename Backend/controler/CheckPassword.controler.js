@@ -31,7 +31,7 @@ export const checkPassword = async (req, res) => {
       email: user.email,
     };
 
-    // create token 
+    // create token =tokendata+secreatekey 
     const token = await jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {
       expiresIn: "1d",
     });

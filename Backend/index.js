@@ -3,7 +3,7 @@ import dotenv from  "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import cors from "cors"; 
-
+import CookieParser from "cookie-parser"
 import registerRoute from "./route/user.route.js"
 const Frontend_URL=process.env.FrontendURI;
 
@@ -11,10 +11,10 @@ const Frontend_URL=process.env.FrontendURI;
 const app=express();
 app.use(cors({
     origin:Frontend_URL,
-    credential:true
+    credentials:true
 }));
 app.use(express.json());
-
+app.use(CookieParser());
 
 const PORT=process.env.PORT ||4000;
 const URI=process.env.URI;
