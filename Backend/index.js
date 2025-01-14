@@ -5,13 +5,13 @@ import mongoose from "mongoose";
 import cors from "cors"; 
 import CookieParser from "cookie-parser"
 import registerRoute from "./route/user.route.js"
-const Frontend_URL=process.env.FrontendURI;
+const Frontend_URL=process.env.Frontend_URL;
 
 
 const app=express();
 app.use(cors({
-    origin:Frontend_URL,
-    credentials:true
+    origin: Frontend_URL,  // Allow frontend's origin
+    credentials: true,     // Allow credentials like cookies
 }));
 app.use(express.json());
 app.use(CookieParser());
