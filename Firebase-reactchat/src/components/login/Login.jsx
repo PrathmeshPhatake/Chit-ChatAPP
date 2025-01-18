@@ -4,10 +4,13 @@ import avatar_png from "../../../public/avatar.png";
 import "../login/login.css";
 import axios from "axios";
 import { uploadfile } from "../../helper/uploadfile.jsx";
+import {useNavigate} from "react-router-dom";
+
 
 const API = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
+  const navigate=useNavigate();
   const [avtar, setAvtar] = useState({
     file: null,
     url: "",
@@ -65,11 +68,11 @@ const Login = () => {
 
   // console.log("avtar:",avtar);
 
+   /*  this api for registration  */
   const handleRegistration = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // stor in backend
-    //  const URL=`${API}/user/register`;
+
     try {
       const URL = `${API}/user/register`;
       const response = await axios.post(URL, registrationData);
@@ -84,6 +87,7 @@ const Login = () => {
           password:"",
           profile_pic:"",
         });
+        navigate('/');
       }
     } catch (error) {
       toast.error(error?.response?.data?.message);
@@ -92,10 +96,31 @@ const Login = () => {
     console.log("Data:", registrationData);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
     e.stopPropagation();
-    toast.success("Login Successful!");
+    try {
+      const URL=`${API}/user/login`
+      const response =await axios({
+        method:'post',
+        url:URL,
+        data:loginData,
+        withCredentials:true 
+      });
+      console.log("response:",response);
+      toast.success(response.data.message);
+      if(response.data.success)
+      {
+        setLoginData({
+          email:" ",
+          password:" "
+        })
+        navigate('/home');
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      console.log("error:",error);
+    }
     console.log("DATA:", loginData);
   };
   return (
@@ -120,7 +145,12 @@ const Login = () => {
           <button>Log_IN</button>
         </form>
       </div>
+
+      
       <div className="separator"></div>
+
+
+
       <div className="item">
         <h2>Create an Account</h2>
         <form onSubmit={handleRegistration}>

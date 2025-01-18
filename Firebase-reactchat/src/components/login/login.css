@@ -61,6 +61,14 @@
         height: 80%;
         width: 2px;
         background-color: #dddddd35;
+        margin: 0 20px;
       }
     }
+}
+
+.separator{
+  height: 80%;
+  width: 2px;
+  background-color:#ccc;;
+  margin: 0 20px;
 }
