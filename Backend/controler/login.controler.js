@@ -2,23 +2,24 @@ import User from "../model/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const checkPassword = async (req, res) => {
+export const login = async (req, res) => {
   try {
-    const { userid, password } = req.body;
-    if (!userid || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
       return res.status(400).json({
-        message: "required Userid and password",
+        message: "required email and password",
         error: true,
       });
     }
-    const user = await User.findById(userid);
-    if (!user) {
+    const checkEmail = await User.findOne({email});
+    if (!checkEmail) {
       return res.status(404).json({
-        message: "No user found!",
+        message: "No email exist!",
         error: true,
       });
     }
-    const verifiedPassword = await bcrypt.compare(password,user.password);
+
+    const verifiedPassword = await bcrypt.compare(password,checkEmail.password);
     if (!verifiedPassword) {
       return res.status(401).json({
         message: "Invalid password",
@@ -27,8 +28,8 @@ export const checkPassword = async (req, res) => {
     }
     // create token using id and email with secrete key 
     const tokenData = {
-      id: user._id,
-      email: user.email,
+      id: checkEmail._id,
+      email: checkEmail.email,
     };
 
     // create token =tokendata+secreatekey 
@@ -45,8 +46,10 @@ export const checkPassword = async (req, res) => {
     return res.cookie("token", token, cookieOption).status(200).json({
       message: "Login succesfuly!",
       token:token,
+      data:checkEmail,
       success: true,
     });
+    
   } catch (error) {
     return res.status(500).json({
         message: "Internal server error",

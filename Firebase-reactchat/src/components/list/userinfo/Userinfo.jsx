@@ -30,7 +30,7 @@ const Userinfo = () => {
   return (
     <div className='userinfo'>
         <div className='user'>
-        <img src={avatar ||user?.profile_pic } alt="" />
+        <img src={user?.profile_pic ||avatar } alt="" />
         <h2>{user.name}</h2>
         </div>
         <div className='icons'>

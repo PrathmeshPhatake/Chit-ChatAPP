@@ -20,7 +20,7 @@ const Login = () => {
     name: "",
     email: "",
     password: "",
-    profile_pic: null,
+    profile_pic: "",
   });
   // for login
   const [loginData, setLoginData] = useState({
@@ -55,12 +55,12 @@ const Login = () => {
       console.log("uploadPhoto:", uplaodPhoto);
       setAvtar({
         file: file,
-        url: window.URL.createObjectURL(file),
+        url:uplaodPhoto.url,
       });
       setRegistrationData((prev) => {
         return {
           ...prev,
-          profile_pic: file.name,
+          profile_pic: uplaodPhoto.url,
         };
       });
     }
@@ -76,9 +76,11 @@ const Login = () => {
     try {
       const URL = `${API}/user/register`;
       const response = await axios.post(URL, registrationData);
-      console.log("response", response);
+      console.log("response", response.data);
 
-      toast.success(response.data.success);
+      toast.success(response.data?.message);
+      navigate('/');
+      toast.info("login again!");
       if(response.data.success)
       {
         setRegistrationData({
@@ -87,7 +89,7 @@ const Login = () => {
           password:"",
           profile_pic:"",
         });
-        navigate('/');
+        
       }
     } catch (error) {
       toast.error(error?.response?.data?.message);

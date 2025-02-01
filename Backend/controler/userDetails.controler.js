@@ -5,7 +5,7 @@ export const UserDetails=async(req,res)=>{
         const token=req.cookies.token || "";
         const user=await getUserDetailsFromToken(token);
         if(!user)
-        {
+        { 
             return res.status(500).json({
                 message:"Invalid token",
                 error:true
@@ -20,6 +20,6 @@ export const UserDetails=async(req,res)=>{
         return res.status(500).json({
             message:error.message|| error,
             error:true 
-        })
+        });
     }
 }

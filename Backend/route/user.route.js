@@ -2,7 +2,7 @@ import express from "express";
 const router=express.Router();
 import { register } from "../controler/user.controler.js";
 import { checkEmail } from "../controler/checkEmail.controler.js";
-import {checkPassword} from "../controler/checkPassword.controler.js";
+import {login} from "../controler/login.controler.js";
 import {UserDetails} from "../controler/userDetails.controler.js"
 import { logout } from "../controler/logout.controler.js";
 import { updateUser } from "../controler/updateUser.controler.js";
@@ -13,7 +13,7 @@ router.post("/register", register);
 router.post("/email",checkEmail);
 
 // cheeck user password
-router.post("/password",checkPassword);
+router.post("/login",login);
 
 // get user details from token 
 router.get('/user-details',UserDetails);

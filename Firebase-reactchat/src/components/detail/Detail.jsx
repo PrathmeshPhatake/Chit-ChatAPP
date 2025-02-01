@@ -1,10 +1,26 @@
 import "./detail.css";
+import axios from "axios";
 import user_pro from "../../../public/avatar.png";
 import arrowup from "../../../public/arrowUp.png";
 import arrodown from "../../../public/arrowDown.png";
 import download from "../../../public/download.png";
+const API = import.meta.env.VITE_BACKEND_URL;
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Detail = () => {
+const navigate=useNavigate();
+  const handleLogout=async()=>{
+    try {
+      const URL=`${API}/user/logout-user`
+      const response=await axios.get(URL)
+      console.log("response:",response);
+      navigate('/');
+      toast.success(response?.data?.message);
+    } catch (error) {
+      console.log("error",error);
+    }
+  }
   return (
     <div className="detail">
       <div className="user">
@@ -80,7 +96,7 @@ const Detail = () => {
           </div>
         </div>
         <button>Block User</button>
-        <button className="logout">Log-Out</button>
+        <button className="logout" onClick={handleLogout}>Log-Out</button>
       </div>
     </div>
   );
