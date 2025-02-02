@@ -5,16 +5,20 @@ import "../login/login.css";
 import axios from "axios";
 import { uploadfile } from "../../helper/uploadfile.jsx";
 import {useNavigate} from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setToken, setUser } from '../redux/userSlice';
 
 
 const API = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const navigate=useNavigate();
+  const dispatch = useDispatch()
   const [avtar, setAvtar] = useState({
     file: null,
     url: "",
   });
+
   // for registration
   const [registrationData, setRegistrationData] = useState({
     name: "",
@@ -113,9 +117,10 @@ const Login = () => {
       toast.success(response.data.message);
       if(response.data.success)
       {
+        dispatch(setToken(response?.data?.token));
+        localStorage.setItem('token',response?.data?.token)
         setLoginData({
-          email:" ",
-          password:" "
+          password:""
         })
         navigate('/home');
       }

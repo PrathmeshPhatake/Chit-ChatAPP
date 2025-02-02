@@ -8,15 +8,48 @@ import img from "../../../public/img.png";
 import camera from "../../../public/camera.png";
 import mic from "../../../public/mic.png";
 import Emojipicker from "emoji-picker-react";
+import io from 'socket.io-client'
 import { useEffect, useState,useRef } from "react";
-
+const API = import.meta.env.VITE_BACKEND_URL;
 const Chat = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
-
-
   // this hook for when we opned it comes to that div automatic 
   const endRef=useRef(null)
+  /* ****
+  socket connection  
+  */
+
+  useEffect(()=>{
+    const socketConnection =io(API,{
+      auth:{
+        token:localStorage.getItem('token')
+      }
+    })
+
+    return ()=>{
+     socketConnection.disconnect()
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
   useEffect(()=>{
     endRef.current?.scrollIntoView({behaviour:"smooth"});

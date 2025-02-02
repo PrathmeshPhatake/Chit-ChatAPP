@@ -6,9 +6,9 @@ import cors from "cors";
 import CookieParser from "cookie-parser"
 import registerRoute from "./route/user.route.js"
 const Frontend_URL=process.env.Frontend_URL;
+import {server,app} from './socket/index.js'
 
-
-const app=express();
+// const app=express();
 app.use(cors({
     origin: Frontend_URL,  // Allow frontend's origin
     credentials: true,     // Allow credentials like cookies
@@ -34,6 +34,6 @@ app.use("/user",registerRoute);
 app.get("/",(req,res)=>{
     res.send("hello world");
 })
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     console.log(`server run on port ${PORT}`);
 })

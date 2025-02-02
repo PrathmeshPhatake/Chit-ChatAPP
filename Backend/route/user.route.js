@@ -6,6 +6,7 @@ import {login} from "../controler/login.controler.js";
 import {UserDetails} from "../controler/userDetails.controler.js"
 import { logout } from "../controler/logout.controler.js";
 import { updateUser } from "../controler/updateUser.controler.js";
+import { searchUser } from "../controler/searchUser.js";
 // for registration 
 router.post("/register", register);
 
@@ -24,4 +25,7 @@ router.get('/logout-user',logout);
 
 // for update user detailed 
 router.post('/update-user',updateUser);
+
+// for find user from databasee
+router.post('/search-user',searchUser);
 export default router;

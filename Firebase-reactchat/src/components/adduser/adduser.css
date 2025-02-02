@@ -2,7 +2,7 @@
     height: max-content;
     width: max-content;
     padding: 30px;
-    background-color:rgba(17,25,40,0.5);
+    background-color:rgba(17,25,40,.8);
     border-radius: 10px;
     position: absolute;
     top: 0;
@@ -10,9 +10,21 @@
     left: 0;
     right: 0;
     margin: auto;
-    
+    opacity:1;
 
+    .cancelIcon{
+        display: flex;
+        justify-content: flex-end;
+        
+        .icon{
+            width: 20px; /* Set desired width */
+            height: 20px; /* Set desired height */
+            transform: rotate(45deg); 
+            cursor: pointer;
+        }
+    }
     form{
+        margin-top: 20px;
         display: flex ;
         gap: 20px;
 
@@ -34,8 +46,14 @@
         }
 
     }
+    .user-list {
+        max-height: 300px; /* Adjust this height as needed */
+        overflow-y: auto;
+        margin-top: 20px;
+      }
     .user{
         margin-top: 50px;
+       
         display: flex;
         align-items: center;
         justify-content: space-between;
