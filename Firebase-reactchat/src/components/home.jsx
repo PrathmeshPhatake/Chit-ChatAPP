@@ -20,7 +20,7 @@ const home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log('user:',user);
+  console.log('user:',user);
   const fetchuserdetails = async () => {
     try {
       const URL = `${API}/user/user-details`;
@@ -29,7 +29,7 @@ const home = () => {
         url: URL,
         withCredentials: true,
       });
-      // const temp=response?.data?.data;
+      const temp=response?.data?.data;
       dispatch(setUser(response?.data?.data));
       console.log("user details:", temp);
     } catch (error) {
@@ -48,20 +48,21 @@ const home = () => {
   useEffect(() => {
     const socketConnection = io(API, {
       auth: {
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem('token'),
       },
     });
 
-    socketConnection.on("onlineUser", (data) => {
-      console.log(data);
+    socketConnection.on('onlineUser',(data)=>{
+      console.log("data",data);
       dispatch(setOnlineUser(data));
-    });
+    })
+    dispatch(setSocketConnection(socketConnection))
 
-    dispatch(setSocketConnection(socketConnection));
+
     return () => {
       socketConnection.disconnect();
     };
-  });
+  }, [dispatch]);
 
   return (
     <>
